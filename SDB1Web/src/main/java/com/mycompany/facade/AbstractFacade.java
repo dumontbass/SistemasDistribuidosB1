@@ -1,9 +1,10 @@
-package facade;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mycompany.facade;
 
 
-
-
-import com.mongodb.Mongo;
 import net.vz.mongodb.jackson.DBCursor;
 import net.vz.mongodb.jackson.JacksonDBCollection;
 import net.vz.mongodb.jackson.WriteResult;
@@ -21,12 +22,12 @@ import java.util.List;
  */
 public abstract class AbstractFacade<T> {
 
-    private Mongo  mongoDB;
+    private JacksonDBCollection<T,String> jacksonDB;
     private Class<T> entityClass;
 
-    public AbstractFacade(Class<T> entityClass, Mongo  mongoDB) {
+    public AbstractFacade(Class<T> entityClass, JacksonDBCollection<T, String> jacksonDB) {
         this.entityClass = entityClass;
-        this.mongoDB = mongoDB;
+        this.jacksonDB = jacksonDB;
     }
 
     public AbstractFacade(Class<T> entityClass) {
@@ -41,9 +42,9 @@ public abstract class AbstractFacade<T> {
     protected abstract EntityManager getEntityManager();
 
 
-    public String create(T entity) {
-       
-        return "";
+    public T create(T entity) {
+        WriteResult<? extends Object, String> result = jacksonDB.insert(entity);
+        return (T) result.getSavedObject();
     }
 
     public void edit(T entity) {
@@ -61,10 +62,12 @@ public abstract class AbstractFacade<T> {
     public List<T> findAll() {
 
         List<T> lista = new ArrayList<T>();
-        
-       
+        DBCursor<T> cursor =  jacksonDB.find();
 
-    
+        while(cursor.hasNext()){
+            lista.add(cursor.next());
+        }
+
 
         return lista;
 
@@ -82,4 +85,6 @@ public abstract class AbstractFacade<T> {
         return  findAll().size();
     }
 
+
 }
+
