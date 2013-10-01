@@ -13,7 +13,6 @@ import net.vz.mongodb.jackson.JacksonDBCollection;
 import javax.persistence.EntityManager;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import java.util.Date;
 import java.util.List;
 
 
@@ -38,7 +37,7 @@ public class PedidoResource extends AbstractFacade<Pedido> {
     public Pedido create(Pedido pedido) {
 
 
-        pedido.horario = new Date();
+        //pedido.horario = new Date();
 
         super.create(pedido);
 

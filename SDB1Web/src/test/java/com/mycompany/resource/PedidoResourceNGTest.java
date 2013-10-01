@@ -13,7 +13,6 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
-import org.json.JSONArray;
 import org.testng.annotations.Test;
 
 import java.io.BufferedReader;
@@ -48,6 +47,11 @@ public class PedidoResourceNGTest {
         JSONObject json = new JSONObject();
         json.put("codCliente", 1234);
 
+        json.put("status", 2);
+        /*
+        JSONObject json = new JSONObject();
+        json.put("codCliente", 1234);
+
         JSONArray prod = new JSONArray();
 
         JSONObject pp = new JSONObject();
@@ -58,7 +62,7 @@ public class PedidoResourceNGTest {
 
 
         json.put("produtos", prod);
-
+        */
 
 
         StringEntity se = new StringEntity(json.toString());

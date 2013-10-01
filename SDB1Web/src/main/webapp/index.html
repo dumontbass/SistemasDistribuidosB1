@@ -1,0 +1,43 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; utf-8">
+    <title>Trabalho B1</title>
+
+    <link rel="stylesheet" type="text/css" href="content/css/ext-all.css" />
+
+
+    <!-- GC -->
+
+    <!-- <x-compile> -->
+    <!-- <x-bootstrap> -->
+    <script type="text/javascript" src="content/js/ext-all.js"></script>
+
+
+
+    <!-- </x-bootstrap> -->
+    <script type="text/javascript">
+        Ext.Loader.setPath('MyApp', 'content/js/MyApp');
+
+        Ext.require('MyApp.views.PedidoEditorWindow');
+
+
+
+        Ext.onReady(function() {
+            Ext.create('MyApp.views.PedidoEditorWindow').show();
+
+        });
+
+
+
+
+    </script>
+    <!-- </x-compile> -->
+</head>
+
+<body>
+
+
+
+</body>
+</html>

@@ -8,9 +8,7 @@ package com.mycompany.sdb1web;
 import com.mongodb.DB;
 import com.mongodb.Mongo;
 import com.mongodb.MongoURI;
-import com.mycompany.resource.CategoriaResource;
 import com.mycompany.resource.PedidoResource;
-import com.mycompany.resource.ProdutoResource;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.grizzly.http.server.NetworkListener;
 import org.glassfish.grizzly.http.server.StaticHttpHandler;
@@ -36,17 +34,17 @@ public class Server {
         final int port = System.getenv("PORT") != null ? Integer.valueOf(System.getenv("PORT")) : 8082;
         final URI baseUri = UriBuilder.fromUri("http://0.0.0.0/").port(port).build();
 
-        final Application application = Application.builder(ResourceConfig.builder().packages(ProdutoResource.class.getPackage().getName()).build()).build();
+        //final Application application = Application.builder(ResourceConfig.builder().packages(ProdutoResource.class.getPackage().getName()).build()).build();
         final Application application2 = Application.builder(ResourceConfig.builder().packages(PedidoResource.class.getPackage().getName()).build()).build();
-        final Application application3 = Application.builder(ResourceConfig.builder().packages(CategoriaResource.class.getPackage().getName()).build()).build();
+        //final Application application3 = Application.builder(ResourceConfig.builder().packages(CategoriaResource.class.getPackage().getName()).build()).build();
  
 
-        application.addModules(new JsonJacksonModule());
+        //application.addModules(new JsonJacksonModule());
         application2.addModules(new JsonJacksonModule());
-        application3.addModules(new JsonJacksonModule());
+        //application3.addModules(new JsonJacksonModule());
      
 
-        final HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(baseUri, application);
+        final HttpServer httpServer = GrizzlyHttpServerFactory.createHttpServer(baseUri, application2);
         httpServer.getServerConfiguration().addHttpHandler(new StaticHttpHandler("src/main/webapp"), CONTENT_PATH);
 
 
